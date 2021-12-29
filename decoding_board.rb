@@ -1,25 +1,41 @@
-require_relative 'peg.rb'
+require_relative 'peg'
 class DecodingBoard
   attr_accessor :white_pegs, :black_pegs
-  def initialize
-    @white_pegs = []
-    @black_pegs = []
+
+  def initialize(white_pegs, black_pegs)
+    @white_pegs = Array.new(white_pegs) { WhitePeg.new }
+    @black_pegs = Array.new(black_pegs) { BlackPeg.new }
   end
+
   def to_s
-    "#{@white_pegs} - #{@black_pegs}"
-  end
-  def insert_peg(peg)
-    case peg.type
-    when BlackPeg
-      @black_pegs.push(peg)
-    when WhitePeg
-      @white_pegs.push(peg)
+    if @black_pegs.empty? && @white_pegs.empty?
+      ''
     else
-      puts "This should never happen"
+      "#{@white_pegs.join('-')} | #{@black_pegs.join('-')}"
     end
   end
+
+  def insert_peg(peg)
+    case true
+    when peg.type == BlackPeg
+      @black_pegs.push(peg)
+    when peg.type == WhitePeg
+      @white_pegs.push(peg)
+    else
+      false
+    end
+  end
+
   def remove_pegs()
     @white_pegs.clear
     @black_pegs.clear
+  end
+
+  def number_of_black_pegs
+    @black_pegs.size
+  end
+
+  def number_of_white_pegs
+    @white_pegs.size
   end
 end
