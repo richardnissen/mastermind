@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require_relative 'helper'
 require_relative 'decoding_board'
+# A code for the mastermind game
 class Code
   include Helper
   def initialize(code: false)

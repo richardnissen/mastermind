@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 require_relative 'peg'
+# Decoding board for displaying the Pegs
 class DecodingBoard
   attr_accessor :white_pegs, :black_pegs
 
@@ -16,10 +19,10 @@ class DecodingBoard
   end
 
   def insert_peg(peg)
-    case true
-    when peg.type == BlackPeg
+    case peg
+    when BlackPeg
       @black_pegs.push(peg)
-    when peg.type == WhitePeg
+    when WhitePeg
       @white_pegs.push(peg)
     else
       false
@@ -30,7 +33,7 @@ class DecodingBoard
     number_of_black_pegs == 4
   end
 
-  def remove_pegs()
+  def remove_pegs
     @white_pegs.clear
     @black_pegs.clear
   end

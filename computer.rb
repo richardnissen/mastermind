@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 require_relative 'code'
 require_relative 'decoding_board'
+# The computer for a mastermind game
 class Computer
   attr_accessor :list
+
   def initialize
     @list = list_setup
     @guess = 1122
@@ -25,7 +29,7 @@ class Computer
   end
 
   private
-  
+
   def list_setup
     n = 0
     Array.new(1296) do
