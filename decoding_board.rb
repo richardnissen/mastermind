@@ -26,6 +26,10 @@ class DecodingBoard
     end
   end
 
+  def correct_guess?
+    number_of_black_pegs == 4
+  end
+
   def remove_pegs()
     @white_pegs.clear
     @black_pegs.clear
@@ -37,5 +41,10 @@ class DecodingBoard
 
   def number_of_white_pegs
     @white_pegs.size
+  end
+
+  def ==(other)
+    number_of_white_pegs == other.number_of_white_pegs &&
+      number_of_black_pegs == other.number_of_black_pegs
   end
 end

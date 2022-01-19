@@ -2,10 +2,8 @@ require_relative 'helper'
 require_relative 'decoding_board'
 class Code
   include Helper
-  attr_reader :code
-
-  def initialize
-    @code = false
+  def initialize(code: false)
+    @code = code
   end
 
   def new_code(code)
@@ -26,7 +24,7 @@ class Code
     black_pegs = guess_arr.each_with_index.reduce(0) do |memo, (element, index)|
       element == code_arr[index] ? memo + 1 : memo
     end
-    white_pegs = guess_arr.intersection(code_arr).size - black_pegs
+    white_pegs = 4 - (code_arr - guess_arr).size - black_pegs
     DecodingBoard.new(white_pegs, black_pegs)
   end
 end
