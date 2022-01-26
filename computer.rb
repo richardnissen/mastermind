@@ -4,7 +4,7 @@ require_relative 'code'
 require_relative 'decoding_board'
 # The computer for a mastermind game
 class Computer
-  attr_accessor :list
+  attr_accessor :list, :guess
 
   def initialize
     @list = list_setup

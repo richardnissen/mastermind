@@ -10,7 +10,7 @@ class Code
   end
 
   def new_code(code)
-    if code.to_s.split('').all? { |n| n.to_i.between?(1, 6) }
+    if valid_code(code)
       @code = code
     else
       false
@@ -20,6 +20,11 @@ class Code
   def generate_code
     @code = Array.new(4) { rand(1..6) }.join.to_i
   end
+
+  def valid_code(code)
+    code.to_s.split('').all? { |n| n.to_i.between?(1, 6) }
+  end
+
 
   def check_code(guess)
     guess_arr = int_to_array(guess)
