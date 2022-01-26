@@ -23,7 +23,8 @@ class Computer
     if decoding_board.correct_guess?
       @guess
     else
-      @list.select! { |element| decoding_board == code.check_code(element) }
+      @list.select! { |element| element.check_code(@guess) == decoding_board }
+      @guess = @list.first.to_i
       false
     end
   end
@@ -38,13 +39,7 @@ class Computer
       n3 = (n / 6 / 6) % 6 + 1
       n4 = n / 6 / 6 / 6 + 1
       n += 1
-      [n4, n3, n2, n1].join('').to_i
+      Code.new(code: [n4, n3, n2, n1].join('').to_i)
     end
   end
 end
-
-computer = Computer.new
-code = Code.new
-code.new_code(1134)
-computer.computer_guess(code)
-puts computer.list

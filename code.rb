@@ -30,4 +30,12 @@ class Code
     white_pegs = 4 - (code_arr - guess_arr).size - black_pegs
     DecodingBoard.new(white_pegs, black_pegs)
   end
+
+  def to_i
+    @code
+  end
+
+  def to_s
+    @code.to_s
+  end
 end
